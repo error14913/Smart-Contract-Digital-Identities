@@ -1,4 +1,15 @@
-git ```markdown
+```
+Contract ID: CACBGNEA2CQ5AM6HG2LSNU2Y7PBPHU4PUOUGOJUYDQXSFDHUVZGSL7VU
+```
+
+**Link Explorer:**  
+[https://stellar.expert/explorer/testnet/contract/CACBGNEA2CQ5AM6HG2LSNU2Y7PBPHU4PUOUGOJUYDQXSFDHUVZGSL7VU](https://stellar.expert/explorer/testnet/contract/CACBGNEA2CQ5AM6HG2LSNU2Y7PBPHU4PUOUGOJUYDQXSFDHUVZGSL7VU)
+
+---
+
+# **README.md HOÀN CHỈNH – DÁN NGAY VÀO REPO**
+
+```markdown
 # Decentralized Digital Identity Management on Stellar (Soroban)
 
 [![Stellar](https://img.shields.io/badge/Stellar-Soroban-blue?style=flat&logo=stellar)](https://soroban.stellar.org)
@@ -80,20 +91,19 @@ Artifact: target/wasm32v1-none/release/digital_identity.wasm
 ### 1. Create & Fund Account
 
 ```powershell
-# Generate keypair (positional argument in CLI 23.x)
+# Generate keypair
 stellar keys generate issuer
 
 # Get public address
 stellar keys address issuer
+# Output: GDCK4FOHRQVVE2SSAYB44KYENP4UBRGEEF3HKJ6TAO6AJCMQZNTIGLVZ
 ```
 
-→ Copy address → Fund at:  
+**Fund at:**  
 [https://laboratory.stellar.org/#account-creator?network=test](https://laboratory.stellar.org/#account-creator?network=test)
 
-```powershell
-# Verify balance
-stellar account show issuer --network testnet
-```
+**Verify Balance:**  
+[https://stellar.expert/explorer/testnet/account/GDCK4FOHRQVVE2SSAYB44KYENP4UBRGEEF3HKJ6TAO6AJCMQZNTIGLVZ](https://stellar.expert/explorer/testnet/account/GDCK4FOHRQVVE2SSAYB44KYENP4UBRGEEF3HKJ6TAO6AJCMQZNTIGLVZ)
 
 ---
 
@@ -106,13 +116,13 @@ stellar contract deploy `
   --wasm target/wasm32v1-none/release/digital_identity.wasm `
   --alias digital-id `
   --network testnet `
-  issuer
+  --source-account issuer
 ```
 
 **Success Output:**
 ```
-Contract deployed successfully!
-Contract ID: CBE...XYZ
+Deployed!
+CACBGNEA2CQ5AM6HG2LSNU2Y7PBPHU4PUOUGOJUYDQXSFDHUVZGSL7VU
 ```
 
 ---
@@ -120,9 +130,19 @@ Contract ID: CBE...XYZ
 ### 3. Get Contract ID
 
 ```powershell
-$ID = stellar contract id digital-id --network testnet
-echo "Contract ID: $ID"
+CONTRACT_ID=$(stellar contract id digital-id --network testnet)
+echo "Contract ID: $CONTRACT_ID"
 ```
+
+---
+
+## Deployed Contract (Testnet)
+
+| Network | Contract ID | Explorer |
+|--------|-------------|----------|
+| Testnet | `CACBGNEA2CQ5AM6HG2LSNU2Y7PBPHU4PUOUGOJUYDQXSFDHUVZGSL7VU` | [View on Stellar Expert](https://stellar.expert/explorer/testnet/contract/CACBGNEA2CQ5AM6HG2LSNU2Y7PBPHU4PUOUGOJUYDQXSFDHUVZGSL7VU) |
+
+> **Issuer Account:** [GDCK...LVZ](https://stellar.expert/explorer/testnet/account/GDCK4FOHRQVVE2SSAYB44KYENP4UBRGEEF3HKJ6TAO6AJCMQZNTIGLVZ)
 
 ---
 
@@ -132,70 +152,7 @@ echo "Contract ID: $ID"
 > `Address` → Stellar account: `G...`  
 > `Symbol` → short string: `"STUDENT"`, `"DIPLOMA"`
 
-### 1. Register Identity
 
-```powershell
-ISSUER=$(stellar keys address issuer)
-ID=0x1111111111111111111111111111111111111111111111111111111111111111
-
-stellar contract invoke `
-  --id $ID `
-  --fn register_identity `
-  --arg identity_id="0x1111111111111111111111111111111111111111111111111111111111111111" `
-  --arg owner="$ISSUER" `
-  --arg identity_type="STUDENT" `
-  --arg metadata="Nguyen Van A | Hanoi University" `
-  --network testnet `
-  issuer
-```
-
-### 2. Get Identity
-
-```powershell
-stellar contract invoke `
-  --id $ID `
-  --fn get_identity `
-  --arg identity_id="0x1111111111111111111111111111111111111111111111111111111111111111" `
-  --network testnet
-```
-
-### 3. Issue Credential
-
-```powershell
-CRED_ID=0xaaaaaaaabbbbbbbbccccccccddddddddeeeeeeeeffffffffaaaaaaaabbbbbbbb
-
-stellar contract invoke `
-  --id $ID `
-  --fn issue_credential `
-  --arg credential_id="$CRED_ID" `
-  --arg identity_id="0x1111111111111111111111111111111111111111111111111111111111111111" `
-  --arg issuer="$ISSUER" `
-  --arg credential_type="DIPLOMA" `
-  --arg issue_date=1734028800 `
-  --arg expiry_date=1891708800 `
-  --network testnet `
-  issuer
-```
-
-### 4. Verify Credential
-
-```powershell
-stellar contract invoke `
-  --id $ID `
-  --fn verify_credential `
-  --arg credential_id="$CRED_ID" `
-  --network testnet
-```
-
----
-
-## Deployed Contract (Testnet)
-
-| Network | Contract ID | Explorer |
-|--------|-------------|----------|
-| Testnet | `CBE...XYZ` | [View on Stellar Expert](https://stellar.expert/explorer/testnet/contract/CBE...XYZ) |
-
-> *(Replace `CBE...XYZ` with your actual deployed ID)*
 
 ---
 
@@ -203,9 +160,9 @@ stellar contract invoke `
 
 | Name | Student ID (MSV) | Role |
 |------|------------------|------|
-| [Your Full Name] | [Your MSV] | Smart Contract Developer |
-| [Member 2] | [MSV] | Testing & Documentation |
-| [Member 3] | [MSV] | Deployment & Integration |
+| [Trần Thế Anh] | [22010240] | Smart Contract Developer |
+| [Bùi Trọng Hiếu] | [22010187] | Testing & Documentation |
+
 
 ---
 
@@ -213,7 +170,7 @@ stellar contract invoke `
 
 | Issue | Solution |
 |------|----------|
-| `Failed to find config identity` | Run `stellar keys generate issuer` |
+| `Account not found` | Fund account at [Laboratory](https://laboratory.stellar.org/#account-creator?network=test) |
 | `File not found` | Run `stellar contract build` in `contracts/digital_identity` |
 | `symbol too long` | Use `symbol_short!("reg")` (max 9 chars) |
 | `use of moved value` | Use `.clone()` for `BytesN<32>` |
@@ -230,4 +187,3 @@ This project is licensed under the **MIT License** - see the [LICENSE](LICENSE) 
 ```
 
 ---
-
