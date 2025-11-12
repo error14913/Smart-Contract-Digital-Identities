@@ -1,21 +1,37 @@
-# Soroban Project
+# Digital Identity Management on Stellar (Soroban)
 
-## Project Structure
+[![Stellar](https://img.shields.io/badge/Stellar-Soroban-blue)](https://soroban.stellar.org)
+[![Rust](https://img.shields.io/badge/Rust-1.75+-orange)](https://rust-lang.org)
+[![License](https://img.shields.io/badge/License-MIT-green)](LICENSE)
 
-This repository uses the recommended structure for a Soroban project:
-```text
-.
-├── contracts
-│   └── hello_world
-│       ├── src
-│       │   ├── lib.rs
-│       │   └── test.rs
-│       └── Cargo.toml
-├── Cargo.toml
-└── README.md
-```
+A **decentralized, self-sovereign digital identity system** on Stellar using Soroban smart contracts. Users own and control their identity. Issuers (schools, governments, companies) can issue verifiable credentials.
 
-- New Soroban contracts can be put in `contracts`, each in their own directory. There is already a `hello_world` contract in there to get you started.
-- If you initialized this project with any other example contracts via `--with-example`, those contracts will be in the `contracts` directory as well.
-- Contracts should have their own `Cargo.toml` files that rely on the top-level `Cargo.toml` workspace for their dependencies.
-- Frontend libraries can be added to the top-level directory as well. If you initialized this project with a frontend template via `--frontend-template` you will have those files already included.
+> **Use Case**: Student IDs, Citizen IDs, Employee Badges, Professional Licenses — all on-chain, verifiable, and portable.
+
+---
+
+## Features
+
+| Function | Description |
+|--------|-------------|
+| `register_identity` | Create a unique digital ID |
+| `get_identity` | Retrieve identity details |
+| `transfer_identity` | Transfer ownership |
+| `issue_credential` | Issue diploma, license, etc. |
+| `verify_credential` | Verify validity |
+| `revoke_credential` | Revoke issued credential |
+
+---
+
+## Prerequisites
+
+```bash
+# Install Rust
+curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
+rustup update
+
+# Add Wasm target
+rustup target add wasm32-unknown-unknown
+
+# Install Stellar CLI
+cargo install --locked stellar-cli --features soroban
