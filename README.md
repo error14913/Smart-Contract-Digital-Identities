@@ -7,8 +7,6 @@ Contract ID: CACBGNEA2CQ5AM6HG2LSNU2Y7PBPHU4PUOUGOJUYDQXSFDHUVZGSL7VU
 
 ---
 
-# **README.md HOÀN CHỈNH – DÁN NGAY VÀO REPO**
-
 ```markdown
 # Decentralized Digital Identity Management on Stellar (Soroban)
 
